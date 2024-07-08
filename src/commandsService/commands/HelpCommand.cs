@@ -8,7 +8,7 @@ internal class HelpCommand(ICollection<string> collection) : BaseCommand, ICliCo
 {
     private readonly ICollection<string> _descriptions = collection;
 
-    public void Execute(EventHandler< OutputArgs> outputMethod)
+    public void Execute(EventHandler<OutputArgs> outputMethod)
     {
         OutputUpdate += outputMethod;
         var helpMessageBuilder = new StringBuilder();
@@ -18,9 +18,10 @@ internal class HelpCommand(ICollection<string> collection) : BaseCommand, ICliCo
             helpMessageBuilder.AppendLine($"{counter}) {element}");
             counter++;
         }
-        
+
         SendNewOutput(helpMessageBuilder.ToString());
     }
+
     public override string ToString()
     {
         return "help";

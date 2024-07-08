@@ -27,7 +27,7 @@ internal sealed class LcCommand : BaseCommand, ICliCommand
     }
 
 
-    public void Execute(EventHandler< OutputArgs> outputMethod)
+    public void Execute(EventHandler<OutputArgs> outputMethod)
     {
         OutputUpdate += outputMethod;
         var numberOfLines = File.ReadLines(_file.FullName).Count();

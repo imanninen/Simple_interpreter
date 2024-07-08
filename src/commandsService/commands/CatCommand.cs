@@ -26,23 +26,22 @@ internal sealed class CatCommand : BaseCommand, ICliCommand
             throw new FileNotFoundException($"File: {_file} should exists!");
         }
     }
-    
-    
-    
-    public void Execute(EventHandler< OutputArgs> outputMethod)
+
+
+    public void Execute(EventHandler<OutputArgs> outputMethod)
     {
         OutputUpdate += outputMethod;
-        
+
         StringBuilder outputConstructor = new StringBuilder();
 
         foreach (var line in File.ReadLines(_file.FullName))
         {
             outputConstructor.AppendLine(line);
         }
-        
+
         SendNewOutput(outputConstructor.ToString());
     }
-    
+
     public override string ToString()
     {
         return $"cat {_file}";

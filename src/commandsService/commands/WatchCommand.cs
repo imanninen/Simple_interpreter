@@ -25,7 +25,7 @@ internal sealed class WatchCommand : BaseCommand, ICliCommand
         }
     }
 
-    public void Execute(EventHandler< OutputArgs> outputMethod)
+    public void Execute(EventHandler<OutputArgs> outputMethod)
     {
         OutputUpdate += outputMethod;
         _watcher.EnableRaisingEvents = true;
@@ -35,7 +35,7 @@ internal sealed class WatchCommand : BaseCommand, ICliCommand
             if (String.Equals(line, "exit"))
                 break;
         }
-        
+
         _watcher.EnableRaisingEvents = false;
     }
 
