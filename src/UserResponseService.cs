@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Text;
 using Simple_interpreter_1.commandsService.core;
 using Simple_interpreter_1.commandsService.factories;
 
@@ -7,7 +6,7 @@ namespace Simple_interpreter_1;
 
 internal sealed class UserResponseService
 {
-    private ICollection<ICliCommandFactory> _factories = new List<ICliCommandFactory>(new ICliCommandFactory[]
+    private readonly ICollection<ICliCommandFactory> _factories = new List<ICliCommandFactory>(new ICliCommandFactory[]
     {
         new CatCommandFactory(),
         new HelpCommandFactory(),
@@ -29,7 +28,7 @@ internal sealed class UserResponseService
     private ICliCommand ConstructHelpCommand(HelpCommandFactory helpCommandFactory, List<string> tokens)
     {
         var descriptionsBuilder = new Collection<string>();
-        
+
         descriptionsBuilder.Add(tokens[0]);
         foreach (var factory in _factories)
         {

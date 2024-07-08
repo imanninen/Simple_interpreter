@@ -1,4 +1,3 @@
-using System.Threading.Channels;
 
 namespace Simple_interpreter_1.app;
 
@@ -18,9 +17,8 @@ public sealed class Interpreter
                 break;
             try
             {
-                string output;
                 var command = _commandService.GetResponse(input);
-                command.Execute(out output);
+                command.Execute(out var output);
                 Console.WriteLine(output);
             }
             catch (Exception e)

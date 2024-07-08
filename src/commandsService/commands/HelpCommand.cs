@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Text;
 using Simple_interpreter_1.commandsService.core;
 
