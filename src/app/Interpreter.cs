@@ -1,12 +1,11 @@
-
 using Simple_interpreter_1.commandsService.core;
 
 namespace Simple_interpreter_1.app;
 
 public sealed class Interpreter
 {
-    private readonly UserResponseService _commandService = new UserResponseService();
-    
+    private readonly UserResponseService _commandService = new();
+
     public void Run()
     {
         while (true)
@@ -24,7 +23,7 @@ public sealed class Interpreter
             }
             catch (Exception e)
             {
-               WriteErrorToConsole(e.Message);
+                WriteErrorToConsole(e.Message);
             }
         }
     }
