@@ -37,4 +37,9 @@ internal sealed class CatCommand : ICliCommand
 
         output = outputConstructor.ToString();
     }
+    
+    public override string ToString()
+    {
+        return $"cat {_file}";
+    }
 }

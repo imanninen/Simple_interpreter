@@ -5,11 +5,11 @@ namespace Simple_interpreter_1.commandsService.factories;
 
 internal class CatCommandFactory : ICliCommandFactory
 {
-    private const string _Name = "cat";
+    private const string CommandName = "cat";
     private const string Desc = "cat <path/to/file> - shows all lines of file.";
 
     public string Description => Desc;
-    public string Name => _Name;
+    public string Name => CommandName;
     
     public ICliCommand Create(params string[] args)
     {
@@ -21,9 +21,9 @@ internal class CatCommandFactory : ICliCommandFactory
                 throw new ArgumentException("Not enough arguments!");
         }
 
-        if (! string.Equals(args[0], _Name, StringComparison.Ordinal))
+        if (! string.Equals(args[0], CommandName, StringComparison.Ordinal))
         {
-            throw new ArgumentException($"For {args[0]} command {_Name} expected.");
+            throw new ArgumentException($"For {args[0]} command {CommandName} expected.");
         }
 
         return new CatCommand(args[1]);

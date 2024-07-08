@@ -19,4 +19,8 @@ internal class HelpCommand(ICollection<string> collection) : ICliCommand
 
         output = helpMessageBuilder.ToString();
     }
+    public override string ToString()
+    {
+        return "help";
+    }
 }
