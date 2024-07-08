@@ -4,5 +4,8 @@ namespace Simple_interpreter_1.commandsService.core;
 
 public interface ICliCommand
 {
-    void Execute(EventHandler< OutputArgs> outputMethod);
+    event EventHandler<OutputArgs>? OutputUpdate;
+    void Execute();
+
+    void ConfigureOutputMethod(EventHandler<OutputArgs> outputMethod);
 }

@@ -28,10 +28,8 @@ internal sealed class CatCommand : BaseCommand, ICliCommand
     }
 
 
-    public void Execute(EventHandler<OutputArgs> outputMethod)
+    public new void Execute(EventHandler<OutputArgs> outputMethod)
     {
-        OutputUpdate += outputMethod;
-
         StringBuilder outputConstructor = new StringBuilder();
 
         foreach (var line in File.ReadLines(_file.FullName))

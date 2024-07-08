@@ -27,7 +27,6 @@ internal sealed class WatchCommand : BaseCommand, ICliCommand
 
     public void Execute(EventHandler<OutputArgs> outputMethod)
     {
-        OutputUpdate += outputMethod;
         _watcher.EnableRaisingEvents = true;
         while (true)
         {

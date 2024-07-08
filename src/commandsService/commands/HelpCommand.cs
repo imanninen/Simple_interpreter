@@ -10,7 +10,6 @@ internal class HelpCommand(ICollection<string> collection) : BaseCommand, ICliCo
 
     public void Execute(EventHandler<OutputArgs> outputMethod)
     {
-        OutputUpdate += outputMethod;
         var helpMessageBuilder = new StringBuilder();
         var counter = 1;
         foreach (var element in _descriptions)

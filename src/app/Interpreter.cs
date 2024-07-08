@@ -20,7 +20,8 @@ public sealed class Interpreter
             try
             {
                 var command = _commandService.GetResponse(input);
-                command.Execute(WriteToConsole);
+                command.ConfigureOutputMethod(WriteToConsole);
+                command.Execute();
             }
             catch (Exception e)
             {
