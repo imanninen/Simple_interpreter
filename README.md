@@ -3,6 +3,7 @@ Write a CLI application that supports the following commands
 * `cat /path/to/file` - prints the file content
 * `lc  /path/to/file` - prints lines count
 * `help` - prints available commands
+* `watch /path/to/dir` - locks the directory and prints about updates in it into console
 
 For simplicity, it’s supposed that paths to files are absolute.
 
