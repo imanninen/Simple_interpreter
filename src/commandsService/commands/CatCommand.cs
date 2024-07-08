@@ -3,7 +3,7 @@ using Simple_interpreter_1.commandsService.core;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
-internal sealed class CatCommand : ICliCommand
+internal sealed class CatCommand : BaseCommand, ICliCommand
 {
     private readonly FileInfo _file;
 
@@ -26,16 +26,20 @@ internal sealed class CatCommand : ICliCommand
         }
     }
     
-    public void Execute(out string output)
+    
+    
+    public void Execute(EventHandler< OutputArgs> outputMethod)
     {
+        OutputUpdate += outputMethod;
+        
         StringBuilder outputConstructor = new StringBuilder();
 
         foreach (var line in File.ReadLines(_file.FullName))
         {
             outputConstructor.AppendLine(line);
         }
-
-        output = outputConstructor.ToString();
+        
+        SendNewOutput(outputConstructor.ToString());
     }
     
     public override string ToString()

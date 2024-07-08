@@ -2,9 +2,10 @@ using Simple_interpreter_1.commandsService.core;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
-internal sealed class WatchCommand : ICliCommand
+internal sealed class WatchCommand : BaseCommand, ICliCommand
 {
     private readonly DirectoryInfo _dir;
+    private readonly FileSystemWatcher Watcher;
 
     public WatchCommand(string dirPath)
     {
@@ -23,10 +24,14 @@ internal sealed class WatchCommand : ICliCommand
         {
             throw new FileNotFoundException($"Directory: {_dir} should exists!");
         }
+
+        Watcher = new FileSystemWatcher(dirPath);
+        
     }
 
-    public void Execute(out string output)
+    public void Execute(EventHandler< OutputArgs> outputMethod)
     {
+        OutputUpdate += outputMethod;
         throw new NotImplementedException();
     }
 

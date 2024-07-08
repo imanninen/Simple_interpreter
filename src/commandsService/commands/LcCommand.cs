@@ -2,7 +2,7 @@ using Simple_interpreter_1.commandsService.core;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
-internal sealed class LcCommand : ICliCommand
+internal sealed class LcCommand : BaseCommand, ICliCommand
 {
     private readonly FileInfo _file;
 
@@ -26,10 +26,11 @@ internal sealed class LcCommand : ICliCommand
     }
 
 
-    public void Execute(out string output)
+    public void Execute(EventHandler< OutputArgs> outputMethod)
     {
+        OutputUpdate += outputMethod;
         var numberOfLines = File.ReadLines(_file.FullName).Count();
-        output = numberOfLines.ToString();
+        SendNewOutput(numberOfLines.ToString());
     }
 
     public override string ToString()

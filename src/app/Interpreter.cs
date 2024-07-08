@@ -1,4 +1,6 @@
 
+using Simple_interpreter_1.commandsService.core;
+
 namespace Simple_interpreter_1.app;
 
 public sealed class Interpreter
@@ -18,13 +20,22 @@ public sealed class Interpreter
             try
             {
                 var command = _commandService.GetResponse(input);
-                command.Execute(out var output);
-                Console.WriteLine(output);
+                command.Execute(WriteToConsole);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"ERROR: {e.Message}");
+               WriteErrorToConsole(e.Message);
             }
         }
+    }
+
+    private void WriteToConsole(object? sender, OutputArgs e)
+    {
+        Console.WriteLine(e.Output);
+    }
+
+    private void WriteErrorToConsole(string message)
+    {
+        Console.WriteLine($"ERROR: {message}");
     }
 }
