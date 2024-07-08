@@ -1,42 +1,56 @@
+using System.Text;
 using Simple_interpreter_1.commandsService.core;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
 internal sealed class WatchCommand : BaseCommand, ICliCommand
 {
-    private readonly DirectoryInfo _dir;
-    private readonly FileSystemWatcher Watcher;
+    private readonly FileSystemWatcher _watcher;
 
     public WatchCommand(string dirPath)
     {
-        if (dirPath == null)
+        if (dirPath == null && dirPath != "")
             throw new ArgumentException("File should be not null!");
         try
         {
-            _dir = new DirectoryInfo(dirPath);
+            _watcher = new FileSystemWatcher(dirPath);
+            _watcher.NotifyFilter = NotifyFilters.FileName |
+                                    NotifyFilters.DirectoryName;
+            _watcher.Created += OnCreated;
+            _watcher.Deleted += OnDeleted;
         }
         catch (Exception e)
         {
             throw new ArgumentException(e.Message);
         }
-
-        if (!_dir.Exists)
-        {
-            throw new FileNotFoundException($"Directory: {_dir} should exists!");
-        }
-
-        Watcher = new FileSystemWatcher(dirPath);
-        
     }
 
     public void Execute(EventHandler< OutputArgs> outputMethod)
     {
         OutputUpdate += outputMethod;
-        throw new NotImplementedException();
+        _watcher.EnableRaisingEvents = true;
+        while (true)
+        {
+            var line = Console.ReadLine();
+            if (String.Equals(line, "exit"))
+                break;
+        }
+        
+        _watcher.EnableRaisingEvents = false;
+    }
+
+    private void OnCreated(object? sender, FileSystemEventArgs e)
+    {
+        SendNewOutput($"File created: {e.FullPath}");
+    }
+
+    private void OnDeleted(object? sender, FileSystemEventArgs e)
+    {
+        SendNewOutput($"File deleted: {e.FullPath}");
     }
 
     public override string ToString()
     {
-        return $"watch {_dir}";
+        return $"watch {_watcher.Path}";
     }
 }

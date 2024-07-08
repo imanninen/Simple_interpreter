@@ -10,7 +10,8 @@ internal sealed class UserResponseService
     {
         new CatCommandFactory(),
         new HelpCommandFactory(),
-        new LcCommandFactory()
+        new LcCommandFactory(),
+        new WatchCommandFactory()
     });
 
     public ICliCommand GetResponse(string input)
