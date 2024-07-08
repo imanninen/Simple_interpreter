@@ -1,6 +1,5 @@
 using System.Text;
 using Simple_interpreter_1.commandsService.core;
-using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
@@ -28,7 +27,7 @@ internal sealed class CatCommand : BaseCommand, ICliCommand
     }
 
 
-    public new void Execute(EventHandler<OutputArgs> outputMethod)
+    public override void Execute()
     {
         StringBuilder outputConstructor = new StringBuilder();
 

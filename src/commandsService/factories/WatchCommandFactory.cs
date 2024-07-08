@@ -1,5 +1,6 @@
 using Simple_interpreter_1.commandsService.commands;
 using Simple_interpreter_1.commandsService.core;
+using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1.commandsService.factories;
 
@@ -24,7 +25,7 @@ internal sealed class WatchCommandFactory : ICliCommandFactory
         {
             throw new ArgumentException($"For {args[0]} command {CommandName} expected.");
         }
-
-        return new WatchCommand(args[1]);
+        var temp = new WatchCommand(args[1]);
+        return temp;
     }
 }

@@ -25,13 +25,13 @@ internal sealed class WatchCommand : BaseCommand, ICliCommand
         }
     }
 
-    public void Execute(EventHandler<OutputArgs> outputMethod)
+    public override void Execute()
     {
         _watcher.EnableRaisingEvents = true;
         while (true)
         {
             var line = Console.ReadLine();
-            if (String.Equals(line, "exit"))
+            if (string.Equals(line, "exit"))
                 break;
         }
 

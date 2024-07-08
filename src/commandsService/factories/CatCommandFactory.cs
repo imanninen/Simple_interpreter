@@ -1,5 +1,6 @@
 using Simple_interpreter_1.commandsService.commands;
 using Simple_interpreter_1.commandsService.core;
+using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1.commandsService.factories;
 
@@ -7,7 +8,7 @@ internal class CatCommandFactory : ICliCommandFactory
 {
     private const string CommandName = "cat";
     private const string Desc = "cat <path/to/file> - shows all lines of file.";
-
+    
     public string Description => Desc;
     public string Name => CommandName;
     

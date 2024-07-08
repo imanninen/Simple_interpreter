@@ -1,18 +1,24 @@
 using System.Collections.ObjectModel;
 using Simple_interpreter_1.commandsService.core;
 using Simple_interpreter_1.commandsService.factories;
+using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1;
 
 internal sealed class UserResponseService
 {
-    private readonly ICollection<ICliCommandFactory> _factories = new List<ICliCommandFactory>(new ICliCommandFactory[]
+    private readonly ICollection<ICliCommandFactory> _factories;
+
+    public UserResponseService()
     {
-        new CatCommandFactory(),
-        new HelpCommandFactory(),
-        new LcCommandFactory(),
-        new WatchCommandFactory()
-    });
+        _factories = new List<ICliCommandFactory>(new ICliCommandFactory[]
+        {
+            new CatCommandFactory(),
+            new HelpCommandFactory(),
+            new LcCommandFactory(),
+            new WatchCommandFactory()
+        });
+    }
 
     public ICliCommand GetResponse(string input)
     {

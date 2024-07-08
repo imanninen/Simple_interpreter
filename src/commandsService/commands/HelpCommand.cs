@@ -1,6 +1,5 @@
 using System.Text;
 using Simple_interpreter_1.commandsService.core;
-using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1.commandsService.commands;
 
@@ -8,7 +7,7 @@ internal class HelpCommand(ICollection<string> collection) : BaseCommand, ICliCo
 {
     private readonly ICollection<string> _descriptions = collection;
 
-    public void Execute(EventHandler<OutputArgs> outputMethod)
+    public override void Execute()
     {
         var helpMessageBuilder = new StringBuilder();
         var counter = 1;

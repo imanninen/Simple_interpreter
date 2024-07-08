@@ -1,4 +1,3 @@
-using Simple_interpreter_1.commandsService.core;
 using Simple_interpreter_1.utils;
 
 namespace Simple_interpreter_1.app;
@@ -6,7 +5,6 @@ namespace Simple_interpreter_1.app;
 public sealed class Interpreter
 {
     private readonly UserResponseService _commandService = new();
-
     public void Run()
     {
         while (true)
@@ -30,12 +28,12 @@ public sealed class Interpreter
         }
     }
 
-    private void WriteToConsole(object? sender, OutputArgs e)
+    private static void WriteToConsole(object? sender, OutputArgs e)
     {
         Console.WriteLine(e.Output);
     }
 
-    private void WriteErrorToConsole(string message)
+    private static void WriteErrorToConsole(string message)
     {
         Console.WriteLine($"ERROR: {message}");
     }

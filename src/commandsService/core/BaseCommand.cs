@@ -14,7 +14,7 @@ internal class BaseCommand : ICliCommand
         OutputUpdate.Invoke(this, e);
     }
 
-    public void Execute()
+    public virtual void Execute()
     {
         Console.WriteLine($"Execute method of the {GetType()}");
     }
